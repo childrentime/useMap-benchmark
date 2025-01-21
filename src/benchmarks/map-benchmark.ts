@@ -38,12 +38,12 @@ function runBenchmark(dataSize: number, operationCount: number) {
       console.log(String(benchmark));
     })
     .on('complete', () => {
-      displayResults();
+      displayResults(operationCount);
     })
     .run({ 'async': true });
 }
 
-function displayResults() {
+function displayResults(count: number) {
   const table = new Table({
     head: [
       '实现方式',
@@ -55,8 +55,7 @@ function displayResults() {
   });
 
   results.forEach(result => {
-    // 因为我们在一次测试中执行了operationCount次set，所以要乘以operationCount
-    const actualOpsPerSec = (result?.hz ?? 0) * 100; // 乘以operationCount
+    const actualOpsPerSec = (result?.hz ?? 0) * count; 
     table.push([
       colors.white(result?.name ?? ''),
       colors.green(actualOpsPerSec.toFixed(2)),
@@ -71,7 +70,7 @@ function displayResults() {
 
 // 运行不同数据规模的测试
 const testCases = [
-  { dataSize: 100000, operationCount: 100 },
+  { dataSize: 10000, operationCount: 100 },
   // { dataSize: 10000, operationCount: 100 },
 ];
 
