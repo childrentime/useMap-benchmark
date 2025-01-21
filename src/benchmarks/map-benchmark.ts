@@ -72,8 +72,7 @@ function displayResults() {
 // 运行不同数据规模的测试
 const testCases = [
   { dataSize: 100000, operationCount: 100 },
-  { dataSize: 10000, operationCount: 100 },
-  { dataSize: 1000000, operationCount: 100 },
+  // { dataSize: 10000, operationCount: 100 },
 ];
 
 testCases.forEach(({ dataSize, operationCount }) => {
